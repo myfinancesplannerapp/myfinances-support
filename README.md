@@ -3,7 +3,7 @@
 Thanks for using **My Finances Planner**.
 
 ## Help & contact
-Email: [ahmadharb@outlook.com](mailto:ahmadharb@outlook.com)
+Email: [myfinancesplannerapp@outlook.com](mailto:myfinancesplannerapp@outlook.com)
 
 Please include your device (iPhone / Mac) and app version when you write.
 

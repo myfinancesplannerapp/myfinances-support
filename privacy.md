@@ -6,4 +6,4 @@ My Finances Planner stores your finance data on your device using Apple framewor
 
 We do not run ads and do not sell your personal or financial data.
 
-Contact: ahmadharb@outlook.com
+Contact: myfinancesplannerapp@outlook.com
