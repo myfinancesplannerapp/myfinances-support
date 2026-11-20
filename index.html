@@ -41,6 +41,8 @@ img{max-width:100%; display:block}
 .btn:hover{background:#3a7bf0}
 .btn.sm{padding:8px 14px; font-size:15px}
 .btn.ghost{background:transparent; border:1px solid var(--line)}
+.btn.soon{background:var(--surface); border:1px solid var(--line); color:var(--muted) !important; cursor:default}
+.btn.soon small{font-weight:500; font-size:13px}
 .btn svg{width:20px; height:20px}
 
 .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding-top:64px; padding-bottom:40px}
@@ -68,6 +70,8 @@ h2{font-size:clamp(28px,4vw,40px); letter-spacing:-.025em; line-height:1.1; marg
 .shots img{flex:0 0 auto; width:240px; border-radius:22px; border:1px solid var(--line); scroll-snap-align:start}
 
 .devices{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+.plat{color:var(--muted); font-size:14px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; margin:26px 0 12px}
+.devices.two{grid-template-columns:repeat(2,1fr)}
 .dev{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px}
 .dev b{display:block; margin-bottom:4px}
 .dev span{color:var(--muted); font-size:15px}
@@ -80,6 +84,7 @@ h2{font-size:clamp(28px,4vw,40px); letter-spacing:-.025em; line-height:1.1; marg
 .s span{color:var(--muted); font-size:14px}
 
 .help{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.help.four{grid-template-columns:repeat(2,1fr)}
 .h{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:20px}
 .h h3{margin:0 0 6px; font-size:18px}
 .h p{margin:0 0 12px; color:var(--muted); font-size:15.5px}
@@ -113,9 +118,10 @@ footer a{color:var(--muted)}
     <a class="brand" href="#top"><img src="guide/img/app-icon.png" alt="My Finances Planner"><span>My Finances Planner</span></a>
     <nav>
       <a class="hide-s" href="#features">Features</a>
-      <a href="guide.html">Guide</a>
+      <a class="hide-s" href="#devices">Devices</a>
+      <a href="#guides">Guides</a>
       <a href="#support">Support</a>
-      <a class="btn sm" href="https://apps.apple.com/us/app/my-finances-planner/id6797803767">Get the app</a>
+      <a class="btn sm" href="#get">Get the app</a>
     </nav>
   </div>
 </header>
@@ -123,17 +129,17 @@ footer a{color:var(--muted)}
 <main id="top">
 <div class="in hero">
   <div>
-    <div class="eyebrow">For iPhone, iPad, Mac &amp; Apple Watch</div>
+    <div class="eyebrow">For iPhone, iPad, Mac, Apple Watch &amp; Android</div>
     <h1>Plan your money around payday.</h1>
     <p class="lede">See what's left this pay cycle after bills, installments, card spending and everyday expenses — not just this calendar month.</p>
-    <div class="cta">
+    <div class="cta" id="get">
       <a class="btn" href="https://apps.apple.com/us/app/my-finances-planner/id6797803767">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.02-1.5-2.62-1.7-3.19-1.72-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.75 2.2 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.88.69 1.19-.02 1.94-1.08 2.67-2.14.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.32-.89-2.33-3.55zM14.18 6.15c.61-.74 1.02-1.76.91-2.78-.88.04-1.94.59-2.57 1.32-.56.65-1.06 1.69-.93 2.69.98.08 1.98-.5 2.59-1.23z"/></svg>
         Download on the App Store
       </a>
-      <a class="btn ghost" href="guide.html">Read the guide</a>
+      <span class="btn soon" title="Coming soon on Google Play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.2 2.6c-.3.2-.4.6-.4 1v16.8c0 .4.1.8.4 1l9.4-9.4L4.2 2.6zm10.6 8.2 2.7-2.7L6.4 1.8l8.4 9zm0 2.4-8.4 9 11.1-6.3-2.7-2.7zm5.9-2.4-2.4-1.4-3 3 3 3 2.4-1.4c.7-.4.7-1.4 0-1.8z"/></svg>Google Play <small>· coming soon</small></span>
     </div>
-    <div class="small">Free to start · Pro unlocks more profiles, cards, Wallet pass and backups</div>
+    <div class="small">iPhone, iPad &amp; Mac: free to start, Pro unlocks more profiles, cards, Wallet pass and backups · Android: every feature free · <a href="#guides">Read the guides</a></div>
   </div>
   <div class="phones" aria-hidden="true">
     <img class="a" src="guide/img/installments.jpg" alt="">
@@ -144,7 +150,7 @@ footer a{color:var(--muted)}
 <section id="features">
   <div class="in">
     <h2>Everything for the month — the way salary works.</h2>
-    <p class="sub">Paid on the 27th? Your month runs 27th to 26th. Every screen, widget and Wallet pass follows your cycle.</p>
+    <p class="sub">Paid on the 27th? Your month runs 27th to 26th. Every screen and widget follows your cycle.</p>
     <div class="features">
       <div class="f"><div class="dot" style="background:rgba(76,141,255,.15)">📊</div><h3>What's left, at a glance</h3><p>Income, planned and current remaining, unpaid bills and expenses for the cycle — plus a 12-cycle history.</p></div>
       <div class="f"><div class="dot" style="background:rgba(62,207,142,.15)">🧾</div><h3>Bills you can tick off</h3><p>Due days, categories, every month or selected months. Reminders and calendar export so nothing slips.</p></div>
@@ -173,15 +179,21 @@ footer a{color:var(--muted)}
   </div>
 </section>
 
-<section>
+<section id="devices">
   <div class="in">
-    <h2>On every Apple device you use.</h2>
-    <p class="sub">With iCloud, your numbers follow you — privately, in your own iCloud account.</p>
+    <h2>On the devices you use.</h2>
+    <p class="sub">Your numbers follow you privately — through your own iCloud on Apple devices, or your own Google Drive on Android. Move between the two with a backup file.</p>
+    <div class="plat">Apple · App Store</div>
     <div class="devices">
       <div class="dev"><b>iPhone &amp; iPhone Duo</b><span>Home Screen widgets and Apple Wallet.</span></div>
       <div class="dev"><b>iPad</b><span>Room for charts and history.</span></div>
       <div class="dev"><b>Mac</b><span>Full app and desktop widgets.</span></div>
       <div class="dev"><b>Apple Watch</b><span>What's left, on your wrist.</span></div>
+    </div>
+    <div class="plat">Android · Google Play, coming soon</div>
+    <div class="devices two">
+      <div class="dev"><b>Android phones &amp; foldables</b><span>Home-screen widgets, reminders and PDF reports — including Surface Duo.</span></div>
+      <div class="dev"><b>Android tablets</b><span>Encrypted Google Drive sync between your Android devices.</span></div>
     </div>
   </div>
 </section>
@@ -203,13 +215,15 @@ footer a{color:var(--muted)}
   <div class="in">
     <h2>Help &amp; support.</h2>
     <p class="sub">We're happy to help.</p>
-    <div class="help">
-      <div class="h"><h3>User guide</h3><p>Everything from setting your billing cycle to backups, with screenshots.</p><a class="link" href="guide.html">Open the guide →</a></div>
-      <div class="h"><h3>Contact us</h3><p>Email us and include your device (iPhone, iPad or Mac) and app version.</p><a class="link" href="mailto:myfinancesplannerapp@outlook.com">myfinancesplannerapp@outlook.com</a></div>
-      <div class="h"><h3>Common questions</h3><p>Widgets showing zero, Wallet pass numbers, billing cycles and more.</p><a class="link" href="guide.html#faq">See answers →</a></div>
+    <div class="help four" id="guides">
+      <div class="h"><h3>iPhone, iPad, Mac &amp; Watch guide</h3><p>Billing cycles to backups, Wallet pass and iCloud sync, with screenshots.</p><a class="link" href="guide.html">Open the guide →</a> · <a class="link" href="guide.html#faq">Questions</a></div>
+      <div class="h"><h3>Android guide</h3><p>Everything on Android, plus widgets, Google Drive sync and moving from iPhone.</p><a class="link" href="https://myfinancesplannerapp.github.io/myfinances-android-guide/">Open the guide →</a> · <a class="link" href="https://myfinancesplannerapp.github.io/myfinances-android-guide/#faq">Questions</a></div>
+    </div>
+    <div class="help" style="margin-top:14px; grid-template-columns:1fr">
+      <div class="h"><h3>Contact us</h3><p>Email us and include your device (for example iPhone, Mac or Android phone) and app version.</p><a class="link" href="mailto:myfinancesplannerapp@outlook.com">myfinancesplannerapp@outlook.com</a></div>
     </div>
     <div class="privacy" style="margin-top:16px">
-      <div><h3 style="margin:0 0 6px">Your data stays yours.</h3><p>Your finances are stored on your devices and, if you turn on sync, in your own iCloud account. No ads, and we never sell your data.</p></div>
+      <div><h3 style="margin:0 0 6px">Your data stays yours.</h3><p>Your finances are stored on your devices and, if you turn on sync, in your own iCloud account (Apple) or your own Google Drive, encrypted with your passphrase (Android). No ads, and we never sell your data.</p></div>
       <a class="btn ghost" href="https://myfinancesplannerapp.github.io/myfinances-privacy/">Privacy policy</a>
     </div>
   </div>
@@ -219,7 +233,7 @@ footer a{color:var(--muted)}
 <footer>
   <div class="in">
     <span>© 2026 My Finances Planner</span>
-    <span><a href="guide.html">Guide</a> · <a href="https://myfinancesplannerapp.github.io/myfinances-privacy/">Privacy</a> · <a href="mailto:myfinancesplannerapp@outlook.com">Contact</a></span>
+    <span><a href="guide.html">Apple guide</a> · <a href="https://myfinancesplannerapp.github.io/myfinances-android-guide/">Android guide</a> · <a href="https://myfinancesplannerapp.github.io/myfinances-privacy/">Privacy</a> · <a href="mailto:myfinancesplannerapp@outlook.com">Contact</a></span>
   </div>
 </footer>
 </body>
