@@ -1,5 +1,5 @@
 # Privacy Policy — My Finances Planner
 
-Our privacy policy is here: **[myfinancesplannerapp.github.io/myfinances-privacy](https://myfinancesplannerapp.github.io/myfinances-privacy/)**
+Our privacy policy is here: **[myfinplan.app/privacy](https://myfinplan.app/privacy/)**
 
 Questions: [myfinancesplannerapp@outlook.com](mailto:myfinancesplannerapp@outlook.com)

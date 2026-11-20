@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="How to use My Finances Planner on Android: billing cycles, payments, cards, installments, expenses, savings, end of service, widgets, Google Drive sync and backups.">
+<meta property="og:title" content="My Finances Planner for Android — User Guide">
+<meta property="og:description" content="Plan your money around payday. How to use every part of the Android app.">
+<meta property="og:image" content="https://myfinplan.app/android/img/social.png">
+<meta property="og:url" content="https://myfinplan.app/android/">
+<link rel="canonical" href="https://myfinplan.app/android/">
+<link rel="icon" href="img/app-icon.png">
+<title>My Finances Planner for Android — User Guide</title>
+<style>
+:root{
+  --bg:#0a1120; --surface:#111a2c; --surface-2:#16213a; --line:#22304d;
+  --text:#e8edf6; --muted:#9aa7bd; --accent:#4c8dff; --accent-2:#7aa8ff; --droid:#3ddc84;
+  --green:#3ecf8e; --amber:#f5b544; --rose:#ff7a90; --violet:#b48cff;
+  --radius:16px; --maxw:1120px;
+  --font: Roboto, "Google Sans", -apple-system, "Segoe UI", system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:76px}
+body{margin:0; background:var(--bg); color:var(--text); font:16px/1.6 var(--font); -webkit-font-smoothing:antialiased}
+a{color:var(--accent-2)}
+img{max-width:100%; display:block}
+
+/* Top bar */
+.bar{position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.4) blur(14px); -webkit-backdrop-filter:saturate(1.4) blur(14px);
+  background:rgba(10,17,32,.78); border-bottom:1px solid var(--line)}
+.bar-in{max-width:var(--maxw); margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:12px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:650; letter-spacing:-.01em; color:var(--text); text-decoration:none}
+.brand img{width:28px; height:28px; border-radius:7px}
+.bar .spacer{flex:1}
+.btn{display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600;
+  padding:9px 15px; border-radius:999px; font-size:15px; white-space:nowrap}
+.btn:hover{background:#3a7bf0}
+.btn.ghost{background:transparent; color:var(--text); border:1px solid var(--line)}
+.btn svg{width:16px; height:16px}
+
+/* Hero */
+.hero{max-width:var(--maxw); margin:0 auto; padding:56px 20px 28px; display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center}
+.eyebrow{color:var(--accent-2); font-weight:600; font-size:14px; letter-spacing:.04em; text-transform:uppercase}
+h1{font-size:clamp(34px,5vw,54px); line-height:1.05; letter-spacing:-.025em; margin:10px 0 16px}
+.lede{font-size:19px; color:var(--muted); max-width:34em; margin:0 0 22px}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+.chip{border:1px solid var(--line); background:var(--surface); color:var(--muted); padding:5px 12px; border-radius:999px; font-size:14px}
+.hero-cta{display:flex; gap:10px; flex-wrap:wrap}
+.updated{color:var(--muted); font-size:14px; margin-top:16px}
+.hero-shot{justify-self:center; width:min(300px,80%); filter:drop-shadow(0 30px 60px rgba(0,0,0,.5))}
+.hero-shot img{border-radius:22px}
+
+/* Layout */
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px 80px; display:grid; grid-template-columns:230px 1fr; gap:48px}
+nav.toc{position:sticky; top:76px; align-self:start; max-height:calc(100vh - 96px); overflow:auto; padding:6px 0}
+.toc h4{margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)}
+.toc ol{list-style:none; margin:0; padding:0; counter-reset:t}
+.toc li a{display:block; padding:5px 10px; border-radius:8px; color:var(--muted); text-decoration:none; font-size:14.5px}
+.toc li a:hover{background:var(--surface); color:var(--text)}
+details.toc-m{display:none}
+
+main section{padding:40px 0 8px; border-top:1px solid var(--line)}
+main section:first-child{border-top:0; padding-top:8px}
+h2{font-size:28px; letter-spacing:-.02em; margin:0 0 6px; line-height:1.2}
+h2 .n{color:var(--accent-2); font-variant-numeric:tabular-nums; margin-right:10px}
+.sub{color:var(--muted); margin:0 0 20px; font-size:17px}
+h3{font-size:19px; margin:26px 0 6px; letter-spacing:-.01em}
+p{margin:0 0 12px}
+ul,ol.steps{margin:0 0 14px; padding-left:22px}
+li{margin:4px 0}
+strong{color:#fff; font-weight:620}
+
+.split{display:grid; grid-template-columns:1fr 250px; gap:32px; align-items:start}
+.split.wide{grid-template-columns:1fr}
+figure{margin:0}
+figure img{border-radius:18px; border:1px solid var(--line); background:#000}
+figure.mac img{border-radius:12px}
+figcaption{color:var(--muted); font-size:13.5px; margin-top:8px; text-align:center}
+.figs{display:grid; grid-template-columns:repeat(2, minmax(0,250px)); gap:18px; margin:18px 0}
+
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; margin:16px 0}
+.tip{border-left:3px solid var(--green)}
+.note{border-left:3px solid var(--amber)}
+.card .label{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--green); display:block; margin-bottom:4px}
+.note .label{color:var(--amber)}
+.card p:last-child{margin:0}
+
+.quick{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:8px 0 18px}
+.quick .card{margin:0}
+.quick b{display:block; font-size:30px; color:var(--accent-2); line-height:1; margin-bottom:8px}
+
+.grid-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0}
+.mini{background:var(--surface-2); border-radius:12px; padding:12px 14px; font-size:14.5px}
+.mini b{display:block; font-size:13px; margin-bottom:2px}
+.c-blue b{color:#7aa8ff}.c-green b{color:var(--green)}.c-teal b{color:#4fd1c5}.c-amber b{color:var(--amber)}.c-violet b{color:var(--violet)}.c-rose b{color:var(--rose)}
+
+table{width:100%; border-collapse:collapse; margin:12px 0 18px; font-size:15px}
+th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+th{color:var(--muted); font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.05em}
+td.y{color:var(--green); font-weight:600}
+
+details.faq{background:var(--surface); border:1px solid var(--line); border-radius:12px; margin:10px 0; padding:0 16px}
+details.faq summary{cursor:pointer; padding:14px 0; font-weight:600; list-style:none; position:relative; padding-right:28px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+"; position:absolute; right:0; top:11px; font-size:22px; color:var(--muted)}
+details.faq[open] summary::after{content:"–"}
+details.faq p{color:var(--muted); padding-bottom:14px; margin:0}
+
+.changes h3{display:flex; align-items:baseline; gap:10px}
+.changes h3 span{font-size:13px; color:var(--muted); font-weight:500}
+
+footer{border-top:1px solid var(--line); color:var(--muted); font-size:14px}
+footer .in{max-width:var(--maxw); margin:0 auto; padding:28px 20px 48px; display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between}
+
+/* Mobile */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr; padding-top:32px; gap:28px}
+  .hero-shot{width:220px}
+  .wrap{grid-template-columns:1fr; gap:0}
+  nav.toc{display:none}
+  details.toc-m{display:block; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:0 16px; margin:0 0 8px}
+  details.toc-m summary{padding:13px 0; font-weight:600; cursor:pointer}
+  details.toc-m ol{margin:0 0 12px; padding-left:20px; columns:1}
+  details.toc-m a{color:var(--text); text-decoration:none; line-height:2}
+  .split{grid-template-columns:1fr}
+  .split figure{max-width:260px; margin:0 auto}
+  .quick{grid-template-columns:repeat(2,1fr)}
+  .grid-cards{grid-template-columns:repeat(2,1fr)}
+  .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bar .hide-s{display:none}
+}
+
+/* Print / PDF */
+@media print{
+  @page{size:A4; margin:16mm 16mm 18mm}
+  :root{--bg:#fff; --surface:#f4f6fa; --surface-2:#eef2f8; --line:#dde3ee; --text:#111827; --muted:#4b5563; --accent-2:#1d5fd8; --green:#0f8a55; --amber:#a86300}
+  body{font-size:11pt; line-height:1.5; background:#fff; color:var(--text)}
+  strong{color:#000}
+  .bar, nav.toc, details.toc-m, .hero-cta, .no-print{display:none !important}
+  .hero{display:block; padding:40mm 0 0; min-height:240mm; page-break-after:always; text-align:left}
+  .hero-shot{width:58mm; margin-top:14mm}
+  .wrap{display:block; padding:0}
+  main section{border-top:1px solid var(--line); padding-top:7mm; margin-top:4mm}
+  main section:first-child{border-top:0; margin-top:0}
+  h2, h3, .sub{break-after:avoid}
+  .split{break-inside:avoid}
+  h2{font-size:20pt}
+  .split{grid-template-columns:1fr 52mm; gap:8mm}
+  .figs{grid-template-columns:repeat(2,52mm)}
+  figure, .card, table, details{break-inside:avoid}
+  figure img{border-color:#cfd6e3}
+  details.faq{padding:0 12px}
+  details.faq summary::after, details.faq[open] summary::after{content:""}
+  main > section > figure{max-width:115mm !important; margin:6mm auto 0 !important}
+  main > section > figure[style*="300px"]{max-width:55mm !important}
+  main > section > figure[style*="520px"]{max-width:85mm !important}
+  .figs{grid-template-columns:repeat(2,45mm); justify-content:center}
+  .split{grid-template-columns:1fr 46mm}
+  .quick{grid-template-columns:repeat(2,1fr)}
+  details.faq p{display:block}
+  footer{border-top:1px solid var(--line)}
+  a{color:var(--text); text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#top"><img src="img/app-icon.png" alt="">My Finances Planner <span class="hide-s" style="color:var(--muted);font-weight:500">· Android Guide</span></a>
+    <span class="spacer"></span>
+    <a class="btn ghost hide-s" href="../guide.html">iPhone &amp; Mac guide</a>
+    <a class="btn" href="My_Finances_Planner_Android_Guide.pdf?v=20261121" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
+      PDF
+    </a>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div>
+    <div class="eyebrow">User Guide · Android</div>
+    <h1>Plan your money around payday.</h1>
+    <p class="lede">My Finances Planner shows what's left this pay cycle after bills, installments, card spending and everyday expenses — now on Android phones and tablets.</p>
+    <div class="chips"><span class="chip">Android phones</span><span class="chip">Tablets &amp; foldables</span><span class="chip">Surface Duo</span><span class="chip">Home-screen widgets</span></div>
+    <div class="hero-cta">
+      <a class="btn" href="#start">Start reading</a>
+      <a class="btn ghost" href="My_Finances_Planner_Android_Guide.pdf?v=20261121" download>Download PDF</a>
+    </div>
+    <div class="updated">Version 2.6 · Updated November 2026 · No technical knowledge needed</div>
+  </div>
+  <figure class="hero-shot"><img src="img/overview.jpg" alt="Overview screen on Android showing income, planned remaining, current remaining and unpaid for the cycle"></figure>
+</div>
+
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+  <h4>Contents</h4>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#security">Opening the app</a></li>
+    <li><a href="#profiles">Profiles &amp; billing cycle</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#income">Income</a></li>
+    <li><a href="#payments">Payments</a></li>
+    <li><a href="#cards">Credit cards</a></li>
+    <li><a href="#installments">Installments</a></li>
+    <li><a href="#expenses">Expenses, caps &amp; templates</a></li>
+    <li><a href="#savings">Savings &amp; goals</a></li>
+    <li><a href="#eos">Salary &amp; end of service</a></li>
+    <li><a href="#settings">Settings</a></li>
+    <li><a href="#backup">Backup &amp; moving from iPhone</a></li>
+    <li><a href="#sync">Google Drive sync</a></li>
+    <li><a href="#widgets">Home-screen widgets</a></li>
+    <li><a href="#faq">Questions</a></li>
+    <li><a href="#new">What's new</a></li>
+  </ol>
+</nav>
+
+<main>
+<details class="toc-m"><summary>Contents</summary>
+  <ol><li><a href="#start">Quick start</a></li><li><a href="#security">Opening the app</a></li><li><a href="#profiles">Profiles &amp; billing cycle</a></li><li><a href="#overview">Overview</a></li><li><a href="#income">Income</a></li><li><a href="#payments">Payments</a></li><li><a href="#cards">Credit cards</a></li><li><a href="#installments">Installments</a></li><li><a href="#expenses">Expenses, caps &amp; templates</a></li><li><a href="#savings">Savings &amp; goals</a></li><li><a href="#eos">Salary &amp; end of service</a></li><li><a href="#settings">Settings</a></li><li><a href="#backup">Backup &amp; moving from iPhone</a></li><li><a href="#sync">Google Drive sync</a></li><li><a href="#widgets">Home-screen widgets</a></li><li><a href="#faq">Questions</a></li><li><a href="#new">What's new</a></li></ol>
+</details>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">Four steps and your first cycle is planned.</p>
+  <div class="quick">
+    <div class="card"><b>1</b>In <strong>Settings → Billing Cycle</strong>, set the day your salary arrives.</div>
+    <div class="card"><b>2</b>In <strong>Income</strong>, add what you receive this cycle.</div>
+    <div class="card"><b>3</b>In <strong>Payments</strong>, add your bills: rent, utilities, subscriptions.</div>
+    <div class="card"><b>4</b>Open <strong>Overview</strong> to see what's left — and tick bills as you pay them.</div>
+  </div>
+  <p>The app plans the month the way salary works. If you're paid on the 27th, your cycle runs from the 27th to the 26th, not the 1st to the 31st. Everything else — Overview, Income, Payments and the widgets — follows that cycle.</p>
+  <div class="card tip"><span class="label">Coming from iPhone?</span><p>Export a backup from the iPhone app and import it here — see <a href="#backup">Backup &amp; moving from iPhone</a>. Everything in the Android app is free.</p></div>
+</section>
+
+<section id="security">
+  <h2><span class="n">1</span>Opening the app</h2>
+  <p class="sub">A lock screen first, then your tabs along the bottom.</p>
+  <h3>Keep it private</h3>
+  <p>The app locks by default. Unlock with your fingerprint, face unlock or your phone's screen lock — or set an <strong>App PIN</strong> in <strong>Settings → Security</strong> as a backup. If you leave the app for more than three minutes, it locks again. You can turn the lock off in the same place.</p>
+  <h3>Your tabs</h3>
+  <p>The bottom bar holds four tabs plus <strong>More</strong>, which lists the rest (Income, Installments, Savings, Salary &amp; EOS, Search, Settings). In <strong>Settings → Tab Order</strong>, move the screens you use most into the first four places.</p>
+  <div class="card tip"><span class="label">Tip</span><p>The lock only controls opening the app on that phone. Your fingerprint and face data stay with Android — the app never sees them, and an App PIN is stored only as a scrambled (hashed) value.</p></div>
+</section>
+
+<section id="profiles">
+  <h2><span class="n">2</span>Profiles &amp; your billing cycle</h2>
+  <p class="sub">A profile is a separate set of numbers — yours, a partner's, or a second budget.</p>
+  <p>Each profile has its own income, payments, cards, expenses, savings, installments, salary details, end-of-service settings and cycle start day.</p>
+  <h3>Switch, add or rename</h3>
+  <ul>
+    <li>Open <strong>More → Settings</strong>.</li>
+    <li>Under <strong>Profiles</strong>, tap <strong>Switch</strong> next to a profile, or <strong>Add Profile…</strong> to create one.</li>
+    <li>Use <strong>Rename</strong> or <strong>Delete</strong>. Deleting a profile deletes its data.</li>
+  </ul>
+  <h3>Set your billing cycle</h3>
+  <p>Under <strong>Billing Cycle (this profile)</strong>, choose the day your cycle starts:</p>
+  <ul>
+    <li><strong>Day 1</strong> gives calendar months, like 01 Aug – 31 Aug.</li>
+    <li><strong>Day 27</strong> gives 27 Jul – 26 Aug for the cycle that ends in August.</li>
+    <li><strong>Day 31</strong> starts on the 31st, or on the last day of shorter months (28 or 29 February, 30 April).</li>
+  </ul>
+  <div class="card tip"><span class="label">Tip</span><p>Match the start day to when your salary usually arrives. Bill due dates stay real calendar days (the 16th of October), separate from the cycle.</p></div>
+</section>
+
+<section id="overview">
+  <h2><span class="n">3</span>Overview — your money at a glance</h2>
+  <p class="sub">The home dashboard for the profile you're using.</p>
+  <div class="split">
+    <div>
+      <p>Pick <strong>Month</strong> or <strong>Year</strong>, then the year and cycle. The arrow button jumps back to the current cycle.</p>
+      <h3>What the tiles mean</h3>
+      <div class="grid-cards">
+        <div class="mini c-blue"><b>Income</b>What you recorded for this cycle.</div>
+        <div class="mini c-green"><b>Planned remaining</b>What's left if every planned payment is paid.</div>
+        <div class="mini c-teal"><b>Current remaining</b>Income minus what you've already paid, minus expenses.</div>
+        <div class="mini c-amber"><b>Unpaid</b>Total still unticked this cycle.</div>
+        <div class="mini c-violet"><b>All payments</b>Every payment that belongs to this cycle.</div>
+        <div class="mini c-rose"><b>Expenses</b>Everyday spending you logged.</div>
+      </div>
+      <h3>Overdue &amp; coming up</h3>
+      <p>Bills that are late or due soon are listed under the tiles with their real dates. Below them you'll see each credit card with what's owed and what's left.</p>
+      <h3>Export PDF</h3>
+      <p>Tap <strong>Export PDF</strong> to share a summary of the cycle you're viewing: income, paid and unpaid payments, expenses by category, and what's left.</p>
+    </div>
+    <figure><img src="img/overview.jpg" alt="Overview on Android" loading="lazy"><figcaption>Income, remaining and unpaid for the cycle.</figcaption></figure>
+  </div>
+  <h3>Breakdown, categories &amp; history</h3>
+  <p>Scroll down for the <strong>Breakdown</strong> chart (unpaid, paid, expenses and planned left), payments and expenses by category, and the <strong>last 12 cycles</strong>. Switch the history between <strong>Bar</strong> and <strong>Line</strong>, and tap any cycle to open it.</p>
+  <div class="figs">
+    <figure><img src="img/breakdown.jpg" alt="Breakdown chart and payments by category" loading="lazy"><figcaption>Breakdown and categories.</figcaption></figure>
+    <figure><img src="img/history.jpg" alt="Expenses by category and the last 12 cycles" loading="lazy"><figcaption>12 cycles as bars or a line.</figcaption></figure>
+  </div>
+</section>
+
+<section id="income">
+  <h2><span class="n">4</span>Income</h2>
+  <p class="sub">Record what you receive each cycle.</p>
+  <p>Open <strong>More → Income</strong>, tap <strong>+</strong>, and add the month, amount and an optional note. Each row shows its cycle range under the month name (for example, 27 Jul – 26 Aug).</p>
+  <ul>
+    <li>If you've filled in <a href="#eos">Salary</a>, your total monthly salary is suggested as the amount.</li>
+    <li>Edit or delete a row when something changes.</li>
+    <li>Starting a new year? Copy your income forward from <strong>Settings → Year tools</strong>.</li>
+  </ul>
+</section>
+
+<section id="payments">
+  <h2><span class="n">5</span>Payments</h2>
+  <p class="sub">Your planned bills: rent, utilities, subscriptions, loan repayments, transfers to savings.</p>
+  <div class="split">
+    <div>
+      <h3>Add a payment</h3>
+      <ol class="steps">
+        <li>Tap <strong>+</strong> and enter the name and amount.</li>
+        <li>Set the <strong>due day</strong> (1–31). This is the calendar day of the month, not a day inside the cycle.</li>
+        <li>Choose the year and the months it applies to, or every month.</li>
+        <li>Pick a category, or create your own. Use <strong>Savings</strong> for money you're putting aside.</li>
+        <li>Under <strong>Paid from</strong>, keep <strong>Income</strong> or choose a <a href="#cards">credit card</a> or <a href="#savings">savings</a>.</li>
+      </ol>
+      <h3>Mark months paid</h3>
+      <p>Each month has its own tick, so a yearly bill can be paid for January to July without touching August.</p>
+      <h3>Filters &amp; search</h3>
+      <p>Use <strong>Due this cycle</strong> to focus on what matters now, <strong>Unpaid</strong> for what's left, or <strong>Full year</strong> for the big picture.</p>
+    </div>
+    <figure><img src="img/payments.jpg" alt="Payments on Android" loading="lazy"><figcaption>Due this cycle, with a tick per month.</figcaption></figure>
+  </div>
+  <div class="card tip"><span class="label">Tip</span><p>Mark a <strong>Savings</strong>-category payment as paid and the app asks where it should go. It then appears in Savings.</p></div>
+</section>
+
+<section id="cards">
+  <h2><span class="n">6</span>Credit cards</h2>
+  <p class="sub">Track what you've put on each card and what's left of the limit.</p>
+  <div class="split">
+    <div>
+      <p>Open the <strong>Cards</strong> tab and tap <strong>+</strong>. Enter a nickname, the credit limit and the due day. <strong>The app never asks for or stores a card number or expiry date.</strong></p>
+      <ul>
+        <li><strong>Owed</strong> is everything you've marked as paid from that card, plus any amount you already owed when you added it. <strong>Left</strong> is the limit minus what's owed.</li>
+        <li>When you add a payment or expense, set <strong>Paid from</strong> to <strong>Credit Card</strong> and pick the card.</li>
+        <li>The app creates the card's bill as a payment on its due day. Paying that bill clears what's owed, and partial payments reduce it.</li>
+        <li>Delete a card and its payments and expenses stay — they simply go back to <strong>Income</strong>.</li>
+      </ul>
+    </div>
+    <figure><img src="img/cards.jpg" alt="Cards on Android" loading="lazy"><figcaption>Owed and left for each card.</figcaption></figure>
+  </div>
+</section>
+
+<section id="installments">
+  <h2><span class="n">7</span>Installments</h2>
+  <p class="sub">For anything paid off over several months — Tamara, Tabby, a bank loan, a car.</p>
+  <div class="split">
+    <div>
+      <p>Open <strong>More → Installments</strong> and tap <strong>+</strong>. Enter the name, start date, and two of: total amount, monthly amount, number of months — the third fills in. Choose a <strong>type</strong> (Personal Loan, Car Loan, Mortgage, Credit Card, Tamara, Tabby or Other) and, if you like, a <strong>source</strong> such as the bank or shop.</p>
+      <p>When you save, the app creates matching payments, so each month also shows up in <a href="#payments">Payments</a> and Overview. Long plans create one linked payment per year.</p>
+      <h3>Catch up in one tap</h3>
+      <p>Mark a later month paid and the app offers to mark the earlier unpaid months too.</p>
+    </div>
+    <figure><img src="img/installments.jpg" alt="Installments on Android" loading="lazy"><figcaption>Progress and remaining balance for each plan.</figcaption></figure>
+  </div>
+</section>
+
+<section id="expenses">
+  <h2><span class="n">8</span>Expenses, caps &amp; templates</h2>
+  <p class="sub">Everyday spending inside a cycle — groceries, fuel, food, shopping.</p>
+  <div class="split">
+    <div>
+      <p>Tap <strong>+</strong> and add the name, amount, date, category and an optional note. Expenses can be paid from Income, a credit card, or savings, and they reduce <strong>Current remaining</strong> on Overview.</p>
+      <h3>Templates</h3>
+      <p>Spend on the same things often? Fill in an expense and tap <strong>Save as Template</strong>. Next time, pick it from <strong>From template</strong> at the top of Add Expense. Manage your templates in <strong>Settings → Expense Templates</strong>.</p>
+      <h3>Monthly caps</h3>
+      <p>In <strong>Settings → Expense category caps</strong>, set a monthly limit per category (leave it blank for no limit). The Expenses tab warns you when a category goes over.</p>
+    </div>
+    <figure><img src="img/expenses.jpg" alt="Expenses on Android" loading="lazy"><figcaption>This cycle's spending and which card paid.</figcaption></figure>
+  </div>
+</section>
+
+<section id="savings">
+  <h2><span class="n">9</span>Savings &amp; goals</h2>
+  <p class="sub">Watch your savings grow toward a target.</p>
+  <div class="split">
+    <div>
+      <p>Savings grow in two ways: mark a <strong>Savings</strong> payment as paid, or add an entry in <strong>More → Savings</strong>. Choose where the money went — bank account, cash or other.</p>
+      <h3>Goals</h3>
+      <p>Tap <strong>Add goal</strong> to create a goal with a target amount, then track progress. Name savings entries with the goal name so they count toward it.</p>
+      <h3>Spending from savings</h3>
+      <p>When a payment or expense is <strong>Paid from → Savings</strong>, you can pick which goal it comes out of, or leave it unallocated.</p>
+    </div>
+    <figure><img src="img/savings.jpg" alt="Savings with goals on Android" loading="lazy"><figcaption>Goals and progress.</figcaption></figure>
+  </div>
+</section>
+
+<section id="eos">
+  <h2><span class="n">10</span>Salary &amp; end of service</h2>
+  <p class="sub">Your monthly salary breakdown and an estimate of your end-of-service award.</p>
+  <div class="split">
+    <div>
+      <h3>Salary</h3>
+      <p>In <strong>More → Salary &amp; EOS</strong>, enter Basic, Housing, Transport and Other. The total becomes the default income amount for this profile.</p>
+      <h3>Country &amp; law</h3>
+      <ul>
+        <li><strong>UAE</strong> — Private (typically 21 days per year for the first five years, then 30 days, on basic wage), Public, or Domestic.</li>
+        <li><strong>Saudi Arabia, Qatar, Kuwait, Bahrain, Oman</strong> — built-in estimates for each country's common private-sector rules.</li>
+        <li><strong>Other</strong> — enter your own days per year for early and later years, and whether it's based on basic or full salary.</li>
+      </ul>
+      <p>Set your join date and, optionally, a resignation date or limited contract. Years of service update automatically.</p>
+      <h3>Advances</h3>
+      <p>If you've taken advances against end of service, add them with a date. <strong>Net estimate</strong> is the award after those deductions.</p>
+    </div>
+    <figure><img src="img/eos.jpg" alt="End-of-service estimate on Android" loading="lazy"><figcaption>Advances and the net estimate.</figcaption></figure>
+  </div>
+  <div class="card note"><span class="label">Note</span><p>Estimates are for planning only — confirm final amounts with your employer or official guidance. They're always calculated in AED, so changing the display currency doesn't change the estimate.</p></div>
+</section>
+
+<section id="settings">
+  <h2><span class="n">11</span>Settings</h2>
+  <p class="sub">Currency, reminders, year tools and more — under <strong>More → Settings</strong>.</p>
+  <h3>Currency &amp; exchange rates</h3>
+  <p>Amounts are stored in AED and shown in the currency you choose — USD, EUR, GBP, SAR, QAR and others. Rates refresh once a day when you're online; tap <strong>Refresh live rates</strong> any time, or type your own rate and tap <strong>Save Rates</strong>. Check with your bank when an exact conversion matters.</p>
+  <h3>Reminders &amp; calendar</h3>
+  <p>Turn on <strong>Payment Reminders</strong> and choose how many days before the due date to be notified (1–14). Android asks once for permission to show notifications. <strong>Export to Calendar</strong> adds your due dates to your phone's calendar, with an alert before each.</p>
+  <h3>Year tools</h3>
+  <p>Copy payments or income from one year into the next, so January planning takes seconds. Items already there are skipped.</p>
+  <h3>Also in Settings</h3>
+  <ul>
+    <li><strong>Defaults</strong> and <strong>Expense category caps</strong> and <strong>Expense Templates</strong>.</li>
+    <li><a href="#sync">Google Drive Sync</a> and <a href="#backup">Data Transfer</a> (backup and restore).</li>
+    <li><strong>Danger Zone</strong> — reset all app data. This is permanent.</li>
+    <li><strong>About</strong> — privacy policy, this guide, and Contact Developer.</li>
+  </ul>
+</section>
+
+<section id="backup">
+  <h2><span class="n">12</span>Backup &amp; moving from iPhone</h2>
+  <p class="sub">Keep a copy of everything in a single file — and bring your data from the iPhone app.</p>
+  <p>In <strong>Settings → Data Transfer</strong>, tap <strong>Export Backup (JSON)</strong> and save the file somewhere safe, like Google Drive or Downloads. To restore, tap <strong>Import Backup (JSON)</strong> and pick the file.</p>
+  <h3>Moving from iPhone or Mac</h3>
+  <ol class="steps">
+    <li>On iPhone or Mac, open <strong>Settings → Data Transfer → Export Backup</strong> and send the file to yourself (email, Drive, or a cable).</li>
+    <li>On Android, save the file — for example to <strong>Downloads</strong>.</li>
+    <li>In the Android app, tap <strong>Import Backup (JSON)</strong>. In the file picker, open the <strong>☰</strong> menu and choose <strong>Downloads</strong> (not Recent), then tap the file.</li>
+  </ol>
+  <p>The file format is the same on both, so it works the other way too. Use the iPhone app's version 2.6 or later for a full copy — older backups bring income, payments, installments, expenses and savings, but not cards, goals or other profiles.</p>
+  <h3>How restoring works</h3>
+  <ul>
+    <li>The backup's main profile is restored into the profile you're currently using, replacing its data.</li>
+    <li>Your other profiles are matched to the ones on your phone — updated if they exist, created if they don't.</li>
+  </ul>
+  <div class="card note"><span class="label">Note</span><p>Importing replaces data, so export a fresh backup first if you're unsure. The backup file isn't encrypted — keep it somewhere private.</p></div>
+</section>
+
+<section id="sync">
+  <h2><span class="n">13</span>Google Drive sync</h2>
+  <p class="sub">The same numbers on all your Android phones and tablets — end-to-end encrypted.</p>
+  <ol class="steps">
+    <li>In <strong>Settings → Google Drive Sync</strong>, tap <strong>Turn on Google Drive sync</strong>.</li>
+    <li>Choose your Google account and allow access to the app's own Drive data.</li>
+    <li>Create a <strong>sync passphrase</strong> (at least 8 characters). On your other devices, sign in with the same Google account and enter the same passphrase.</li>
+  </ol>
+  <ul>
+    <li>Your data is encrypted on your phone with your passphrase before it goes to a hidden folder in <strong>your own</strong> Google Drive. Google and the developer can't read it, and the app can't see anything else in your Drive.</li>
+    <li>Changes sync a few seconds after you make them, when you open or leave the app, and every few hours.</li>
+    <li>If two devices change different things, both changes are kept. If both change the same item, the device that syncs wins — but an edit is never lost to a delete.</li>
+    <li><strong>Turn off</strong> stops syncing on that device; <strong>Delete from Drive</strong> removes the encrypted copy.</li>
+  </ul>
+  <div class="card note"><span class="label">Important</span><p>The passphrase can't be recovered. If you forget it, delete the Drive data and turn sync on again from a device that has your data. Sync is between Android devices only — to move between iPhone and Android, use <a href="#backup">backup</a>.</p></div>
+</section>
+
+<section id="widgets">
+  <h2><span class="n">14</span>Home-screen widgets</h2>
+  <p class="sub">See what's left without opening the app.</p>
+  <div class="split">
+    <div>
+      <p>Long-press an empty spot on your home screen, tap <strong>Widgets</strong>, find <strong>My Finances Planner</strong> and drag one out. There are three:</p>
+      <ul>
+        <li><strong>Snapshot</strong> — income left and planned left, plus your cards on larger sizes.</li>
+        <li><strong>Overview</strong> — income, planned left, current left and unpaid, and your first card.</li>
+        <li><strong>Payments due</strong> — overdue and upcoming bills with their dates.</li>
+      </ul>
+      <p>Tap a widget to open the app. Widgets update when you change something, when you leave the app, and every 30 minutes.</p>
+      <div class="card tip"><span class="label">Tip</span><p>Widgets show amounts on your home screen even while the app is locked. Remove them if you'd rather keep figures out of sight.</p></div>
+    </div>
+    <figure><img src="img/widgets.jpg" alt="Home-screen widgets on Android" loading="lazy"><figcaption>Snapshot, Overview and Payments due.</figcaption></figure>
+  </div>
+</section>
+
+<section id="faq">
+  <h2><span class="n">15</span>Questions</h2>
+  <p class="sub">Quick answers to the things people ask most.</p>
+  <details class="faq"><summary>Is the Android app free?</summary><p>Yes — every feature in the Android app is free, including multiple profiles and cards, backups, PDF export and Drive sync.</p></details>
+  <details class="faq"><summary>Why does Overview show a cycle like 27 Jul – 26 Aug?</summary><p>Your profile's cycle starts on day 27. Change it in Settings → Billing Cycle — choose day 1 for calendar months.</p></details>
+  <details class="faq"><summary>Why is planned remaining negative?</summary><p>Your planned payments for the cycle add up to more than the income you've recorded. Add income, adjust your plans, or check you're on the right profile and month.</p></details>
+  <details class="faq"><summary>A payment doesn't show in this cycle.</summary><p>Check its due day, year and selected months. A payment belongs to the cycle that contains its real due date — not "day 16 of the cycle".</p></details>
+  <details class="faq"><summary>The file picker says "Can't load" when importing.</summary><p>The picker opened on a folder it can't read (often Recent, or a cloud app that isn't signed in). Open the ☰ menu and choose Downloads or your phone's storage.</p></details>
+  <details class="faq"><summary>I'm not getting payment reminders.</summary><p>Check that reminders are on in Settings, that notifications are allowed for the app in Android settings, and that battery saving isn't stopping the app in the background.</p></details>
+  <details class="faq"><summary>Sync says "Reconnect Google Drive".</summary><p>Google access was removed or expired. Tap Reconnect Google Drive and sign in again; your passphrase isn't needed.</p></details>
+  <details class="faq"><summary>Can I sync with my iPhone?</summary><p>No — iPhone and Mac use iCloud, and Android uses your Google Drive. To move data between them, export a backup on one and import it on the other.</p></details>
+  <details class="faq"><summary>My end-of-service estimate changed when I picked another country.</summary><p>Each country uses its own rules. Choose Other to enter your own days per year, or switch back to UAE to restore the UAE estimate.</p></details>
+</section>
+
+<section id="new" class="changes">
+  <h2>What's new</h2>
+  <p class="sub">The Android app, version by version.</p>
+  <h3>2.6 <span>November 2026 · first Android release</span></h3>
+  <ul>
+    <li>Everything from the iPhone app's version 2.6: cycle overview, bills, cards, installments, expenses, savings goals and end-of-service estimates.</li>
+    <li>Home-screen widgets, payment reminders, calendar export and PDF reports.</li>
+    <li>Optional Google Drive sync between Android devices, end-to-end encrypted.</li>
+    <li>Expense templates, and import of backups from the iPhone and Mac apps.</li>
+  </ul>
+</section>
+</main>
+</div>
+
+<footer>
+  <div class="in">
+    <span>© 2026 My Finances Planner · Updated November 2026</span>
+    <span>Questions? <a href="mailto:myfinancesplannerapp@outlook.com">myfinancesplannerapp@outlook.com</a> · <a href="../privacy/">Privacy policy</a> · <a href="../">Website</a></span>
+  </div>
+</footer>
+</body>
+</html>
