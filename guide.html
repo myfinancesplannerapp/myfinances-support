@@ -1,29 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Cache-Control" content="no-cache" />
-  <title>My Finances Planner User Guide</title>
-  <style>
-    body { margin: 0; font-family: system-ui, sans-serif; background: #0a1428; color: #fff; }
-    header { display: flex; align-items: center; justify-content: space-between;
-             padding: 12px 16px; gap: 12px; flex-wrap: wrap; }
-    a.btn { background: #3b82f6; color: #fff; text-decoration: none;
-            padding: 10px 14px; border-radius: 8px; font-weight: 600; }
-    iframe { width: 100%; height: calc(100vh - 56px); border: 0; background: #111; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="How to use My Finances Planner on iPhone, iPad, Mac and Apple Watch: billing cycles, payments, cards, installments, expenses, savings, end of service, Wallet, widgets and backups.">
+<title>My Finances Planner — User Guide</title>
+<style>
+:root{
+  --bg:#0a1120; --surface:#111a2c; --surface-2:#16213a; --line:#22304d;
+  --text:#e8edf6; --muted:#9aa7bd; --accent:#4c8dff; --accent-2:#7aa8ff;
+  --green:#3ecf8e; --amber:#f5b544; --rose:#ff7a90; --violet:#b48cff;
+  --radius:16px; --maxw:1120px;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:76px}
+body{margin:0; background:var(--bg); color:var(--text); font:16px/1.6 var(--font); -webkit-font-smoothing:antialiased}
+a{color:var(--accent-2)}
+img{max-width:100%; display:block}
+
+/* Top bar */
+.bar{position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.4) blur(14px); -webkit-backdrop-filter:saturate(1.4) blur(14px);
+  background:rgba(10,17,32,.78); border-bottom:1px solid var(--line)}
+.bar-in{max-width:var(--maxw); margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:12px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:650; letter-spacing:-.01em; color:var(--text); text-decoration:none}
+.brand img{width:28px; height:28px; border-radius:7px}
+.bar .spacer{flex:1}
+.btn{display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600;
+  padding:9px 15px; border-radius:999px; font-size:15px; white-space:nowrap}
+.btn:hover{background:#3a7bf0}
+.btn.ghost{background:transparent; color:var(--text); border:1px solid var(--line)}
+.btn svg{width:16px; height:16px}
+
+/* Hero */
+.hero{max-width:var(--maxw); margin:0 auto; padding:56px 20px 28px; display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center}
+.eyebrow{color:var(--accent-2); font-weight:600; font-size:14px; letter-spacing:.04em; text-transform:uppercase}
+h1{font-size:clamp(34px,5vw,54px); line-height:1.05; letter-spacing:-.025em; margin:10px 0 16px}
+.lede{font-size:19px; color:var(--muted); max-width:34em; margin:0 0 22px}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+.chip{border:1px solid var(--line); background:var(--surface); color:var(--muted); padding:5px 12px; border-radius:999px; font-size:14px}
+.hero-cta{display:flex; gap:10px; flex-wrap:wrap}
+.updated{color:var(--muted); font-size:14px; margin-top:16px}
+.hero-shot{justify-self:center; width:min(300px,80%); filter:drop-shadow(0 30px 60px rgba(0,0,0,.5))}
+.hero-shot img{border-radius:22px}
+
+/* Layout */
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px 80px; display:grid; grid-template-columns:230px 1fr; gap:48px}
+nav.toc{position:sticky; top:76px; align-self:start; max-height:calc(100vh - 96px); overflow:auto; padding:6px 0}
+.toc h4{margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)}
+.toc ol{list-style:none; margin:0; padding:0; counter-reset:t}
+.toc li a{display:block; padding:5px 10px; border-radius:8px; color:var(--muted); text-decoration:none; font-size:14.5px}
+.toc li a:hover{background:var(--surface); color:var(--text)}
+details.toc-m{display:none}
+
+main section{padding:40px 0 8px; border-top:1px solid var(--line)}
+main section:first-child{border-top:0; padding-top:8px}
+h2{font-size:28px; letter-spacing:-.02em; margin:0 0 6px; line-height:1.2}
+h2 .n{color:var(--accent-2); font-variant-numeric:tabular-nums; margin-right:10px}
+.sub{color:var(--muted); margin:0 0 20px; font-size:17px}
+h3{font-size:19px; margin:26px 0 6px; letter-spacing:-.01em}
+p{margin:0 0 12px}
+ul,ol.steps{margin:0 0 14px; padding-left:22px}
+li{margin:4px 0}
+strong{color:#fff; font-weight:620}
+
+.split{display:grid; grid-template-columns:1fr 250px; gap:32px; align-items:start}
+.split.wide{grid-template-columns:1fr}
+figure{margin:0}
+figure img{border-radius:18px; border:1px solid var(--line); background:#000}
+figure.mac img{border-radius:12px}
+figcaption{color:var(--muted); font-size:13.5px; margin-top:8px; text-align:center}
+.figs{display:grid; grid-template-columns:repeat(2, minmax(0,250px)); gap:18px; margin:18px 0}
+
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; margin:16px 0}
+.tip{border-left:3px solid var(--green)}
+.note{border-left:3px solid var(--amber)}
+.card .label{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--green); display:block; margin-bottom:4px}
+.note .label{color:var(--amber)}
+.card p:last-child{margin:0}
+
+.quick{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:8px 0 18px}
+.quick .card{margin:0}
+.quick b{display:block; font-size:30px; color:var(--accent-2); line-height:1; margin-bottom:8px}
+
+.grid-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0}
+.mini{background:var(--surface-2); border-radius:12px; padding:12px 14px; font-size:14.5px}
+.mini b{display:block; font-size:13px; margin-bottom:2px}
+.c-blue b{color:#7aa8ff}.c-green b{color:var(--green)}.c-teal b{color:#4fd1c5}.c-amber b{color:var(--amber)}.c-violet b{color:var(--violet)}.c-rose b{color:var(--rose)}
+
+table{width:100%; border-collapse:collapse; margin:12px 0 18px; font-size:15px}
+th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+th{color:var(--muted); font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.05em}
+td.y{color:var(--green); font-weight:600}
+
+details.faq{background:var(--surface); border:1px solid var(--line); border-radius:12px; margin:10px 0; padding:0 16px}
+details.faq summary{cursor:pointer; padding:14px 0; font-weight:600; list-style:none; position:relative; padding-right:28px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+"; position:absolute; right:0; top:11px; font-size:22px; color:var(--muted)}
+details.faq[open] summary::after{content:"–"}
+details.faq p{color:var(--muted); padding-bottom:14px; margin:0}
+
+.changes h3{display:flex; align-items:baseline; gap:10px}
+.changes h3 span{font-size:13px; color:var(--muted); font-weight:500}
+
+footer{border-top:1px solid var(--line); color:var(--muted); font-size:14px}
+footer .in{max-width:var(--maxw); margin:0 auto; padding:28px 20px 48px; display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between}
+
+/* Mobile */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr; padding-top:32px; gap:28px}
+  .hero-shot{width:220px}
+  .wrap{grid-template-columns:1fr; gap:0}
+  nav.toc{display:none}
+  details.toc-m{display:block; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:0 16px; margin:0 0 8px}
+  details.toc-m summary{padding:13px 0; font-weight:600; cursor:pointer}
+  details.toc-m ol{margin:0 0 12px; padding-left:20px; columns:1}
+  details.toc-m a{color:var(--text); text-decoration:none; line-height:2}
+  .split{grid-template-columns:1fr}
+  .split figure{max-width:260px; margin:0 auto}
+  .quick{grid-template-columns:repeat(2,1fr)}
+  .grid-cards{grid-template-columns:repeat(2,1fr)}
+  .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bar .hide-s{display:none}
+}
+
+/* Print / PDF */
+@media print{
+  @page{size:A4; margin:16mm 16mm 18mm}
+  :root{--bg:#fff; --surface:#f4f6fa; --surface-2:#eef2f8; --line:#dde3ee; --text:#111827; --muted:#4b5563; --accent-2:#1d5fd8; --green:#0f8a55; --amber:#a86300}
+  body{font-size:11pt; line-height:1.5; background:#fff; color:var(--text)}
+  strong{color:#000}
+  .bar, nav.toc, details.toc-m, .hero-cta, .no-print{display:none !important}
+  .hero{display:block; padding:40mm 0 0; min-height:240mm; page-break-after:always; text-align:left}
+  .hero-shot{width:58mm; margin-top:14mm}
+  .wrap{display:block; padding:0}
+  main section{border-top:1px solid var(--line); padding-top:7mm; margin-top:4mm}
+  main section:first-child{border-top:0; margin-top:0}
+  h2, h3, .sub{break-after:avoid}
+  .split{break-inside:avoid}
+  h2{font-size:20pt}
+  .split{grid-template-columns:1fr 52mm; gap:8mm}
+  .figs{grid-template-columns:repeat(2,52mm)}
+  figure, .card, table, details{break-inside:avoid}
+  figure img{border-color:#cfd6e3}
+  details.faq{padding:0 12px}
+  details.faq summary::after, details.faq[open] summary::after{content:""}
+  main > section > figure{max-width:115mm !important; margin:6mm auto 0 !important}
+  main > section > figure[style*="300px"]{max-width:55mm !important}
+  main > section > figure[style*="520px"]{max-width:85mm !important}
+  .figs{grid-template-columns:repeat(2,45mm); justify-content:center}
+  .split{grid-template-columns:1fr 46mm}
+  .quick{grid-template-columns:repeat(2,1fr)}
+  details.faq p{display:block}
+  footer{border-top:1px solid var(--line)}
+  a{color:var(--text); text-decoration:none}
+}
+</style>
 </head>
 <body>
-  <header>
-    <strong>My Finances Planner User Guide v2.5</strong>
-    <a class="btn" href="My_Finances_Planner_User_Guide_v2.5.pdf?v=27" download>
-      Download PDF
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#top"><img src="guide/img/app-icon.png" alt="">My Finances Planner <span class="hide-s" style="color:var(--muted);font-weight:500">· User Guide</span></a>
+    <span class="spacer"></span>
+    <a class="btn" href="My_Finances_Planner_User_Guide.pdf?v=20261120" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
+      PDF
     </a>
-  </header>
-  <iframe
-    src="My_Finances_Planner_User_Guide_v2.5.pdf?v=27"
-    title="My Finances Planner User Guide v2.5">
-  </iframe>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div>
+    <div class="eyebrow">User Guide</div>
+    <h1>Plan your money around payday.</h1>
+    <p class="lede">My Finances Planner shows what's left this pay cycle after bills, installments, card spending and everyday expenses — on iPhone, iPad, Mac and Apple Watch.</p>
+    <div class="chips"><span class="chip">iPhone</span><span class="chip">iPhone Duo</span><span class="chip">iPad</span><span class="chip">Mac</span><span class="chip">Apple Watch</span></div>
+    <div class="hero-cta">
+      <a class="btn" href="#start">Start reading</a>
+      <a class="btn ghost" href="My_Finances_Planner_User_Guide.pdf?v=20261120" download>Download PDF</a>
+    </div>
+    <div class="updated">Updated November 2026 · No technical knowledge needed</div>
+  </div>
+  <figure class="hero-shot"><img src="guide/img/overview-iphone.jpg" alt="Overview screen on iPhone showing income, planned remaining, current remaining and unpaid for the cycle"></figure>
+</div>
+
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+  <h4>Contents</h4>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#security">Opening the app</a></li>
+    <li><a href="#profiles">Profiles &amp; billing cycle</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#income">Income</a></li>
+    <li><a href="#payments">Payments</a></li>
+    <li><a href="#cards">Credit cards</a></li>
+    <li><a href="#installments">Installments</a></li>
+    <li><a href="#expenses">Expenses &amp; caps</a></li>
+    <li><a href="#savings">Savings &amp; goals</a></li>
+    <li><a href="#eos">Salary &amp; end of service</a></li>
+    <li><a href="#wallet">Apple Wallet pass</a></li>
+    <li><a href="#settings">Settings</a></li>
+    <li><a href="#backup">Backup &amp; restore</a></li>
+    <li><a href="#widgets">Widgets &amp; Apple Watch</a></li>
+    <li><a href="#sync">iCloud sync</a></li>
+    <li><a href="#pro">Free &amp; Pro</a></li>
+    <li><a href="#faq">Questions</a></li>
+    <li><a href="#new">What's new</a></li>
+  </ol>
+</nav>
+
+<main>
+<details class="toc-m"><summary>Contents</summary>
+  <ol>
+    <li><a href="#start">Quick start</a></li><li><a href="#security">Opening the app</a></li><li><a href="#profiles">Profiles &amp; billing cycle</a></li>
+    <li><a href="#overview">Overview</a></li><li><a href="#income">Income</a></li><li><a href="#payments">Payments</a></li>
+    <li><a href="#cards">Credit cards</a></li><li><a href="#installments">Installments</a></li><li><a href="#expenses">Expenses &amp; caps</a></li>
+    <li><a href="#savings">Savings &amp; goals</a></li><li><a href="#eos">Salary &amp; end of service</a></li><li><a href="#wallet">Apple Wallet pass</a></li>
+    <li><a href="#settings">Settings</a></li><li><a href="#backup">Backup &amp; restore</a></li><li><a href="#widgets">Widgets &amp; Apple Watch</a></li>
+    <li><a href="#sync">iCloud sync</a></li><li><a href="#pro">Free &amp; Pro</a></li><li><a href="#faq">Questions</a></li><li><a href="#new">What's new</a></li>
+  </ol>
+</details>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">Four steps and your first cycle is planned.</p>
+  <div class="quick">
+    <div class="card"><b>1</b>In <strong>Settings → Billing Cycle</strong>, set the day your salary arrives.</div>
+    <div class="card"><b>2</b>In <strong>Income</strong>, add what you receive this cycle.</div>
+    <div class="card"><b>3</b>In <strong>Payments</strong>, add your bills: rent, utilities, subscriptions.</div>
+    <div class="card"><b>4</b>Open <strong>Overview</strong> to see what's left — and tick bills as you pay them.</div>
+  </div>
+  <p>The app plans the month the way salary works. If you're paid on the 27th, your cycle runs from the 27th to the 26th, not the 1st to the 31st. Everything else — Overview, Income, Payments, widgets and the Wallet pass — follows that cycle.</p>
+</section>
+
+<section id="security">
+  <h2><span class="n">1</span>Opening the app</h2>
+  <p class="sub">A short splash, then your tabs — or a lock screen if you've turned security on.</p>
+  <div class="split">
+    <div>
+      <h3>Keep it private</h3>
+      <p>In <strong>Settings → Security</strong>, turn on Face ID (iPhone), Touch ID (Mac), or a PIN as a backup. If you leave the app for a few minutes, it locks again.</p>
+      <h3>Arrange your tabs</h3>
+      <p>In <strong>Settings → Tab Order</strong>, move the screens you use most to the front. On iPhone, anything that doesn't fit is under <strong>More</strong>.</p>
+      <div class="card tip"><span class="label">Tip</span><p>Security only controls opening the app on that device. Your Apple ID and iCloud still protect the data you sync.</p></div>
+    </div>
+    <figure><img src="guide/img/security-yeartools.jpg" alt="Settings on iPhone with Year tools, Security and Tab Order" loading="lazy"><figcaption>Year tools, security and tab order on iPhone.</figcaption></figure>
+  </div>
+</section>
+
+<section id="profiles">
+  <h2><span class="n">2</span>Profiles &amp; your billing cycle</h2>
+  <p class="sub">A profile is a separate set of numbers — yours, a partner's, or a second budget.</p>
+  <div class="split">
+    <div>
+      <p>Each profile has its own income, payments, cards, expenses, savings, installments, salary details, end-of-service settings, cycle start day and display currency.</p>
+      <h3>Switch, add or rename</h3>
+      <ul>
+        <li>Open <strong>Settings</strong> (on iPhone, it may be under <strong>More</strong>).</li>
+        <li>Under <strong>Profiles</strong>, tap a profile to switch to it, or <strong>Add Profile…</strong> to create one.</li>
+        <li>Use the pencil to rename, or the trash icon to delete. Deleting a profile deletes its data.</li>
+      </ul>
+      <h3>Set your billing cycle</h3>
+      <p>Under <strong>Billing Cycle (this profile)</strong>, choose the day your cycle starts:</p>
+      <ul>
+        <li><strong>Day 1</strong> gives calendar months, like 01 Aug – 31 Aug.</li>
+        <li><strong>Day 27</strong> gives 27 Jul – 26 Aug for the cycle that ends in August.</li>
+        <li><strong>Day 31</strong> starts on the 31st, or on the last day of shorter months (28 or 29 February, 30 April).</li>
+      </ul>
+      <div class="card tip"><span class="label">Tip</span><p>Match the start day to when your salary usually arrives. Bill due dates stay real calendar days (the 16th of October), separate from the cycle.</p></div>
+    </div>
+    <figure><img src="guide/img/profiles.jpg" alt="Settings on iPhone showing profiles, billing cycle and Apple Wallet" loading="lazy"><figcaption>Profiles, cycle start day and Add to Wallet.</figcaption></figure>
+  </div>
+  <figure class="mac" style="margin-top:18px"><img src="guide/img/mac-settings.jpg" alt="Settings on Mac" loading="lazy"><figcaption>The same settings on Mac, with currency and live exchange rates.</figcaption></figure>
+</section>
+
+<section id="overview">
+  <h2><span class="n">3</span>Overview — your money at a glance</h2>
+  <p class="sub">The home dashboard for the profile you're using.</p>
+  <div class="split">
+    <div>
+      <p>Pick <strong>Month</strong> or <strong>Year</strong>, then the year and cycle. The location-arrow button jumps back to the current cycle.</p>
+      <h3>What the cards mean</h3>
+      <div class="grid-cards">
+        <div class="mini c-blue"><b>Income</b>What you recorded for this cycle.</div>
+        <div class="mini c-green"><b>Planned remaining</b>What's left if every planned payment is paid.</div>
+        <div class="mini c-teal"><b>Current remaining</b>Income minus what you've already paid, minus expenses.</div>
+        <div class="mini c-amber"><b>Unpaid</b>Total still unticked this cycle.</div>
+        <div class="mini c-violet"><b>All payments</b>Every payment that belongs to this cycle.</div>
+        <div class="mini c-rose"><b>Expenses</b>Everyday spending you logged.</div>
+      </div>
+      <p>If you have credit cards, Overview also shows a line per card with its remaining limit.</p>
+      <h3>Due today &amp; overdue</h3>
+      <p>When a bill is due today or late, a warning card at the top lists it with its real date (for example, Aug 1).</p>
+      <h3>History &amp; breakdown</h3>
+      <p>The breakdown chart splits the cycle by category. On iPad, Mac and iPhone Duo you also get the last 12 cycles as bars or a line.</p>
+      <h3>Export PDF</h3>
+      <p>Tap <strong>Export PDF</strong> to save or share a summary of the cycle you're viewing: income, paid and unpaid payments, expenses by category, and what's left.</p>
+    </div>
+    <figure><img src="guide/img/pdf-export.jpg" alt="Cycle report ready to share as PDF" loading="lazy"><figcaption>A cycle report, ready to share.</figcaption></figure>
+  </div>
+  <figure style="margin-top:18px; max-width:520px"><img src="guide/img/duo.jpg" alt="Overview on iPhone Duo with the last 12 cycles chart" loading="lazy"><figcaption>On larger screens like iPhone Duo, Overview adds the last-12-cycles chart.</figcaption></figure>
+</section>
+
+<section id="income">
+  <h2><span class="n">4</span>Income</h2>
+  <p class="sub">Record what you receive each cycle.</p>
+  <div class="split">
+    <div>
+      <p>Choose the year, then add the month, amount and an optional note. Each row shows its cycle range under the month name (for example, 27 Jul – 26 Aug).</p>
+      <ul>
+        <li>If you've filled in <a href="#eos">Salary</a>, your total monthly salary is suggested as the amount.</li>
+        <li>Search the list when it gets long, and edit or delete a row when something changes.</li>
+        <li>Starting a new year? Copy your income forward from <strong>Settings → Year tools</strong>.</li>
+      </ul>
+    </div>
+    <figure><img src="guide/img/income.jpg" alt="Income tab on iPhone" loading="lazy"><figcaption>Income with cycle ranges and the salary default.</figcaption></figure>
+  </div>
+</section>
+
+<section id="payments">
+  <h2><span class="n">5</span>Payments</h2>
+  <p class="sub">Your planned bills: rent, utilities, subscriptions, loan repayments, transfers to savings.</p>
+  <h3>Add a payment</h3>
+  <ol class="steps">
+    <li>Tap <strong>+</strong> and enter the name and amount.</li>
+    <li>Set the <strong>due day</strong> (1–31). This is the calendar day of the month, not a day inside the cycle.</li>
+    <li>Choose the year and the months it applies to, or <strong>Every month</strong>.</li>
+    <li>Pick a category, or create your own. Use <strong>Savings</strong> for money you're putting aside.</li>
+    <li>Under <strong>Paid from</strong>, keep <strong>Income</strong> or choose a <a href="#cards">credit card</a> or <a href="#savings">savings</a>.</li>
+  </ol>
+  <h3>Mark months paid</h3>
+  <p>Each month has its own switch, so a yearly bill can be paid for January to July without touching August.</p>
+  <h3>Filters &amp; search</h3>
+  <p>Use <strong>Due this cycle</strong> to focus on what matters now, or the full year when you need the big picture.</p>
+  <div class="card tip"><span class="label">Tip</span><p>Mark a <strong>Savings</strong>-category payment as paid and the app asks where it should go. It then appears in Savings and on your Wallet pass.</p></div>
+  <figure class="mac" style="margin-top:18px"><img src="guide/img/mac-payments.jpg" alt="Adding a payment on Mac" loading="lazy"><figcaption>Adding a bill on Mac: due day, category, every month or selected months.</figcaption></figure>
+</section>
+
+<section id="cards">
+  <h2><span class="n">6</span>Credit cards</h2>
+  <p class="sub">Track what you've put on each card and what's left of the limit.</p>
+  <p>Open the <strong>Cards</strong> tab and tap <strong>Add Card…</strong>. Enter a nickname, the credit limit and the due day. <strong>The app never asks for or stores a card number or expiry date.</strong></p>
+  <ul>
+    <li><strong>Owed</strong> is everything you've marked as paid from that card. <strong>Remaining</strong> is the limit minus what's owed.</li>
+    <li>When you add a payment or expense, set <strong>Paid from</strong> to <strong>Credit Card</strong> and pick the card.</li>
+    <li>The app creates the card's bill as a payment on its due day in the next cycle. Paying that bill clears what's owed, and partial payments reduce it.</li>
+    <li>If a charge would push a card below zero, you'll get a warning before saving.</li>
+    <li>Delete a card and its payments and expenses stay — they simply go back to <strong>Income</strong>.</li>
+  </ul>
+  <div class="card note"><span class="label">Note</span><p>One card is free. More than one card needs <a href="#pro">My Finances Planner Pro</a>.</p></div>
+</section>
+
+<section id="installments">
+  <h2><span class="n">7</span>Installments</h2>
+  <p class="sub">For anything paid off over several months — Tamara, Tabby, a bank loan, a car.</p>
+  <div class="split">
+    <div>
+      <p>Enter the name, start date, and two of: total amount, monthly amount, number of months — the third fills in. Choose a <strong>type</strong> (Credit Card, Tamara, Tabby, Bank, Personal, Car loan, Mortgage or Other) and, if you like, a <strong>source</strong> such as the bank or shop.</p>
+      <p>When you save, the app creates matching payments, so each month also shows up in <a href="#payments">Payments</a> and Overview. Long plans create one linked payment per year.</p>
+      <h3>Catch up in one tap</h3>
+      <p>Mark a later month paid and the app asks whether to mark <strong>this month only</strong> or <strong>all previous months plus this one</strong>.</p>
+    </div>
+    <figure><img src="guide/img/installments.jpg" alt="Installments on iPhone" loading="lazy"><figcaption>Progress and month switches for each plan.</figcaption></figure>
+  </div>
+  <figure class="mac" style="margin-top:18px"><img src="guide/img/mac-installments.jpg" alt="Catching up an installment plan on Mac" loading="lazy"><figcaption>On Mac: mark this month, or all previous months plus this one.</figcaption></figure>
+</section>
+
+<section id="expenses">
+  <h2><span class="n">8</span>Expenses &amp; category caps</h2>
+  <p class="sub">Everyday spending inside a cycle — groceries, fuel, food, shopping.</p>
+  <p>Add the name, amount, date, category and an optional note. Categories include Grocery, Fuel, Food, Shopping and Other, or create your own. Expenses can be paid from Income, a credit card, or savings, and they reduce <strong>Current remaining</strong> on Overview.</p>
+  <h3>Monthly caps</h3>
+  <p>In <strong>Settings → Expense category caps</strong>, set a monthly limit per category (leave it blank for no limit). The Expenses tab warns you when a category goes over.</p>
+  <div class="figs">
+    <figure><img src="guide/img/expenses.jpg" alt="Adding an expense on iPhone" loading="lazy"><figcaption>Adding an expense.</figcaption></figure>
+    <figure><img src="guide/img/caps.jpg" alt="Monthly category caps in Settings" loading="lazy"><figcaption>Caps per category.</figcaption></figure>
+  </div>
+</section>
+
+<section id="savings">
+  <h2><span class="n">9</span>Savings &amp; goals</h2>
+  <p class="sub">Watch your savings grow toward a target.</p>
+  <div class="split">
+    <div>
+      <p>Savings grow in two ways: mark a <strong>Savings</strong> payment as paid, or add an entry in the Savings tab. Choose where the money went — bank account, cash or other.</p>
+      <h3>Goals</h3>
+      <p>Tap the target button to create a goal with a target amount, then track progress. Name savings entries with the goal name so they count toward it.</p>
+      <h3>Spending from savings</h3>
+      <p>When a payment or expense is <strong>Paid from → Savings</strong>, you can pick which goal it comes out of, or leave it unallocated.</p>
+    </div>
+    <figure><img src="guide/img/savings.jpg" alt="Savings with goals on iPhone" loading="lazy"><figcaption>Goals and progress.</figcaption></figure>
+  </div>
+</section>
+
+<section id="eos">
+  <h2><span class="n">10</span>Salary &amp; end of service</h2>
+  <p class="sub">Your monthly salary breakdown and an estimate of your end-of-service award.</p>
+  <h3>Salary</h3>
+  <p>Enter Basic, Housing, Transport and Other. The total becomes the default income amount for this profile.</p>
+  <h3>Country &amp; law</h3>
+  <ul>
+    <li><strong>UAE</strong> — Private (typically 21 days per year for the first five years, then 30 days, on basic wage), Public, or Domestic.</li>
+    <li><strong>Saudi Arabia, Qatar, Kuwait, Bahrain, Oman</strong> — built-in estimates for each country's common private-sector rules.</li>
+    <li><strong>Other</strong> — enter your own days per year for early and later years, and whether it's based on basic or full salary.</li>
+  </ul>
+  <p>Set your join date and, optionally, a resignation date or limited contract. Years of service update automatically.</p>
+  <h3>Advances</h3>
+  <p>If you've taken advances against end of service, add them with a date. <strong>Net EOS</strong> is the estimate after those deductions.</p>
+  <div class="figs">
+    <figure><img src="guide/img/eos.jpg" alt="Salary and EOS on iPhone" loading="lazy"><figcaption>Country, employment type and salary.</figcaption></figure>
+    <figure><img src="guide/img/eos-advances.jpg" alt="Service period, advances and net EOS" loading="lazy"><figcaption>Service period, advances and net EOS.</figcaption></figure>
+  </div>
+  <div class="card note"><span class="label">Note</span><p>Estimates are for planning only — confirm final amounts with your employer or official guidance. They're always calculated in AED, so changing the display currency doesn't change the estimate.</p></div>
+</section>
+
+<section id="wallet">
+  <h2><span class="n">11</span>Apple Wallet pass</h2>
+  <p class="sub">Your remaining balance, one glance away in Wallet.</p>
+  <div class="split">
+    <div>
+      <p>In <strong>Settings → Apple Wallet</strong>, tap <strong>Add to Wallet</strong>. The pass is a snapshot of the current cycle for the active profile, using the same <strong>Current remaining</strong> figure as Overview.</p>
+      <ul>
+        <li><strong>Front:</strong> income remaining, savings, unpaid count and your first card.</li>
+        <li><strong>Back:</strong> billing cycle, profile, and every card with what's remaining and used.</li>
+      </ul>
+      <p>On iPhone it opens Wallet directly. On Mac, the app builds the pass for you to add.</p>
+      <div class="card tip"><span class="label">Tip</span><p>The pass doesn't update itself. After paying bills, open Overview, then add a fresh pass and delete the old one in Wallet.</p></div>
+    </div>
+    <figure><img src="guide/img/wallet.jpg" alt="Wallet pass showing remaining this cycle" loading="lazy"><figcaption>Remaining this cycle, savings and unpaid count.</figcaption></figure>
+  </div>
+</section>
+
+<section id="settings">
+  <h2><span class="n">12</span>Settings</h2>
+  <p class="sub">Currency, reminders, year tools and more.</p>
+  <div class="split">
+    <div>
+      <h3>Currency &amp; exchange rates</h3>
+      <p>Amounts are stored in AED and shown in the currency you choose — USD, EUR, GBP, SAR, QAR and others. Tap <strong>Refresh live rates</strong> when you're online, or edit any rate yourself. Check with your bank when an exact conversion matters.</p>
+      <h3>Reminders &amp; calendar</h3>
+      <p>Turn on <strong>Payment Reminders</strong> and choose how many days before the due date to be notified. <strong>Export to Calendar</strong> adds your due dates to Calendar.</p>
+      <h3>Year tools</h3>
+      <p>Copy payments or income from one year into the next, so January planning takes seconds.</p>
+      <h3>Also in Settings</h3>
+      <ul>
+        <li><a href="#backup">Backup &amp; restore</a> under <strong>Data Transfer</strong>.</li>
+        <li><strong>Danger Zone</strong> — reset all app data. This is permanent.</li>
+        <li><strong>About</strong> — privacy policy, this guide, and Contact Developer.</li>
+      </ul>
+    </div>
+    <figure><img src="guide/img/fx.jpg" alt="Exchange rates to AED with live refresh" loading="lazy"><figcaption>Live rates, stored in AED.</figcaption></figure>
+  </div>
+  <figure style="max-width:300px; margin-top:18px"><img src="guide/img/reminders.jpg" alt="Payment reminders and Export to Calendar" loading="lazy"><figcaption>Reminders and calendar export.</figcaption></figure>
+</section>
+
+<section id="backup">
+  <h2><span class="n">13</span>Backup &amp; restore</h2>
+  <p class="sub">Keep a copy of everything in a single file.</p>
+  <p>In <strong>Settings → Data Transfer</strong>, tap <strong>Export Backup (JSON)</strong> and save the file somewhere safe, like iCloud Drive or Files. To restore, tap <strong>Import Backup (JSON)</strong> and pick the file.</p>
+  <h3>What's included</h3>
+  <p>Income, payments, installments, expenses, savings, credit cards, savings goals, salary, end-of-service settings and advances, which card or goal each payment and expense was paid from, categories, category caps — and all your other profiles.</p>
+  <h3>How restoring works</h3>
+  <ul>
+    <li>The backup's main profile is restored into the profile you're currently using, replacing its data.</li>
+    <li>Your other profiles are matched to the ones on your device — updated if they exist, created if they don't.</li>
+    <li>Backups from older versions of the app still import.</li>
+  </ul>
+  <div class="card note"><span class="label">Note</span><p>Importing replaces data, so export a fresh backup first if you're unsure. Backup export and import are part of <a href="#pro">Pro</a>.</p></div>
+</section>
+
+<section id="widgets">
+  <h2><span class="n">14</span>Widgets &amp; Apple Watch</h2>
+  <p class="sub">See what's left without opening the app.</p>
+  <div class="split">
+    <div>
+      <h3>iPhone &amp; Mac widgets</h3>
+      <p>Open Overview once, then add a widget from your Home Screen (iPhone) or Notification Center and desktop (Mac). There are three styles:</p>
+      <ul>
+        <li><strong>Snapshot</strong> — cycle name, planned remaining, first card, unpaid count.</li>
+        <li><strong>Overview tiles</strong> — income, planned and current remaining, unpaid, and the first card.</li>
+        <li><strong>Due this cycle</strong> — unpaid bills with their dates.</li>
+      </ul>
+      <p>Mac users get widgets without needing the iPhone app.</p>
+      <h3>Apple Watch</h3>
+      <p>The Watch app shows current and planned remaining, unpaid count, cards and what's due this cycle. Add the watch-face widget for remaining, unpaid and your first card at a glance. Keep your iPhone nearby with the app installed.</p>
+      <div class="card tip"><span class="label">Tip</span><p>Widgets and the Watch update when you open Overview. If they show zeros or old numbers, open Overview on iPhone or Mac and wait a few seconds — on Watch, tap Refresh.</p></div>
+    </div>
+    <figure><img src="guide/img/watch.jpg" alt="Apple Watch showing remaining and unpaid" loading="lazy" style="border-radius:22px"><figcaption>What's left, on your wrist.</figcaption></figure>
+  </div>
+</section>
+
+<section id="sync">
+  <h2><span class="n">15</span>Syncing with iCloud</h2>
+  <p class="sub">The same numbers on iPhone, iPad and Mac.</p>
+  <p>With iCloud on and the same Apple ID on each device, your changes appear everywhere. Give sync a few minutes after installing, and stay on Wi-Fi after big imports so it can finish.</p>
+  <ul>
+    <li>Select the same profile on each device to see the same numbers.</li>
+    <li>Keep every device on the latest version of the app so cards, goals and links sync correctly.</li>
+    <li>Your data stays in your own iCloud account. It isn't sent to us or sold.</li>
+  </ul>
+</section>
+
+<section id="pro">
+  <h2><span class="n">16</span>Free &amp; Pro</h2>
+  <p class="sub">Everything you need to plan a cycle is free. Pro adds more for power users.</p>
+  <table>
+    <thead><tr><th>Feature</th><th>Free</th><th>Pro</th></tr></thead>
+    <tbody>
+      <tr><td>Income, payments, installments, expenses, savings, Salary &amp; EOS</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Widgets, Apple Watch, iCloud sync</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Profiles</td><td>1</td><td class="y">Unlimited</td></tr>
+      <tr><td>Credit cards</td><td>1</td><td class="y">Unlimited</td></tr>
+      <tr><td>Apple Wallet pass</td><td>—</td><td class="y">✓</td></tr>
+      <tr><td>Backup export &amp; import</td><td>—</td><td class="y">✓</td></tr>
+      <tr><td>Cycle PDF export &amp; calendar export</td><td>—</td><td class="y">✓</td></tr>
+      <tr><td>Copy to next year</td><td>—</td><td class="y">✓</td></tr>
+    </tbody>
+  </table>
+  <p>Subscribe in <strong>Settings → My Finances Planner Pro</strong>. It's a yearly subscription that you can manage or cancel in your Apple account settings.</p>
+</section>
+
+<section id="faq">
+  <h2><span class="n">17</span>Questions</h2>
+  <p class="sub">Quick answers to the things people ask most.</p>
+  <details class="faq"><summary>Why does Overview show a cycle like 27 Jul – 26 Aug?</summary><p>Your profile's cycle starts on day 27. Change it in Settings → Billing Cycle — choose day 1 for calendar months.</p></details>
+  <details class="faq"><summary>My cycle starts on the 31st — why does February end on the 27th?</summary><p>February has no 31st, so its cycle starts on the last real day (the 28th) and the previous cycle ends the day before.</p></details>
+  <details class="faq"><summary>Why is planned remaining negative?</summary><p>Your planned payments for the cycle add up to more than the income you've recorded. Add income, adjust your plans, or check you're on the right profile and month.</p></details>
+  <details class="faq"><summary>A payment doesn't show in this cycle.</summary><p>Check its due day, year and selected months. A payment belongs to the cycle that contains its real due date — not "day 16 of the cycle".</p></details>
+  <details class="faq"><summary>A widget or the Watch shows 0.</summary><p>Open Overview on iPhone or Mac so the app publishes a fresh summary, then check again.</p></details>
+  <details class="faq"><summary>My Wallet pass shows old numbers.</summary><p>Passes are snapshots. Add a new pass from Settings after updating payments, and delete the old one in Wallet.</p></details>
+  <details class="faq"><summary>Adding to Wallet says "Please update My Finances Planner".</summary><p>Your version of the app is out of date. Update it from the App Store, then try again.</p></details>
+  <details class="faq"><summary>A card shows less remaining than I expected.</summary><p>Owed includes every payment and expense marked as paid from that card. Paying the card's bill (created automatically on its due day) brings owed back down.</p></details>
+  <details class="faq"><summary>My end-of-service estimate changed when I picked another country.</summary><p>Each country uses its own rules. Choose Other to enter your own days per year, or switch back to UAE to restore the UAE estimate.</p></details>
+  <details class="faq"><summary>A salary field didn't convert to my currency.</summary><p>Finish editing the field — press Return on Mac or Done on iPhone — and it converts.</p></details>
+</section>
+
+<section id="new" class="changes">
+  <h2>What's new</h2>
+  <p class="sub">How the app has grown, version by version.</p>
+  <h3>2.0</h3>
+  <ul>
+    <li>GCC end-of-service estimates and a custom formula; cycle start days 1–31.</li>
+    <li>Currency display with live rates; Wallet pass; category caps; installment catch-up; copy to next year; 12-cycle history and PDF export; reminders, calendar export, backups, Face ID / Touch ID / PIN.</li>
+  </ul>
+  <h3>2.1</h3>
+  <ul>
+    <li>Credit cards with "Paid from", automatic card bills and over-limit warnings.</li>
+    <li>Installment type and source; iPhone, Mac and Apple Watch widgets; Watch app.</li>
+  </ul>
+  <h3>2.2</h3>
+  <ul>
+    <li>The Wallet pass uses the same Current remaining as Overview.</li>
+    <li>Cards on the pass: the first on the front, the full list on the back.</li>
+  </ul>
+  <h3>2.5 <span>November 2026</span></h3>
+  <ul>
+    <li>New name: My Finances Planner.</li>
+    <li>Now supports iPhone Duo.</li>
+  </ul>
+  <h3>2.6 <span>November 2026</span></h3>
+  <ul>
+    <li>Backups now include everything: credit cards, savings goals, end-of-service settings and advances, which card or goal paid for what, category caps, and all your profiles.</li>
+    <li>Sharper Wallet pass icon, and security improvements for the Wallet pass.</li>
+  </ul>
+</section>
+</main>
+</div>
+
+<footer>
+  <div class="in">
+    <span>© 2026 My Finances Planner · Updated November 2026</span>
+    <span>Questions? <a href="mailto:myfinancesplannerapp@outlook.com">myfinancesplannerapp@outlook.com</a> · <a href="https://myfinancesplannerapp.github.io/myfinances-privacy/">Privacy policy</a></span>
+  </div>
+</footer>
 </body>
 </html>
